@@ -22,9 +22,16 @@ namespace QuizWalk
     /// </summary>
     public sealed partial class MapPage : Page
     {
+        private static MapPage instance;
+
         public MapPage()
         {
             this.InitializeComponent();
+        }
+
+        public static MapPage getInstance()
+        {
+            return instance != null ? instance : (instance = new MapPage());
         }
     }
 }
