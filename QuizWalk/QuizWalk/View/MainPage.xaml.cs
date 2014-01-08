@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizWalk.Control;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,14 +23,20 @@ namespace QuizWalk
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        MainControl main;
+
         public MainPage()
         {
             this.InitializeComponent();
+            main = new MainControl();
         }
 
         private void Quiz1_Tapped(object sender, TappedRoutedEventArgs e)
         {
-
+            if(this.Frame != null)
+            {
+                this.Frame.Navigate(typeof(MapPage));
+            }
         }
     }
 }
