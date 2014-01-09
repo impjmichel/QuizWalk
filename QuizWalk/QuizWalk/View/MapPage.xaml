@@ -32,7 +32,23 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-        </Grid>
+            <Image x:Name="i1st" Grid.Column="0" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/h.png" />
+            <Image x:Name="i2nd" Grid.Column="1" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/o.png" />
+            <Image x:Name="i3rd" Grid.Column="2" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/i.png" />
+            <Image x:Name="i4th" Grid.Column="3" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i5th" Grid.Column="4" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/r.png" />
+            <Image x:Name="i6th" Grid.Column="5" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/a.png" />
+            <Image x:Name="i7th" Grid.Column="6" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/y.png" />
+            <Image x:Name="i8th" Grid.Column="7" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i9th" Grid.Column="8" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i10th" Grid.Column="9" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i11th" Grid.Column="11" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i12th" Grid.Column="12" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i13th" Grid.Column="13" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i14th" Grid.Column="14" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            <Image x:Name="i15th" Grid.Column="15" HorizontalAlignment="Center" Height="80" Margin="0" VerticalAlignment="Top" Source="ms-appx:/Assets/images/Letters/empty.png" />
+            
 
+        </Grid>
     </Grid>
 </Page>
