@@ -17,7 +17,6 @@ namespace QuizWalk.Control
 
         public void startMap()
         {
-            //MapPage.getInstance().initMapPage;
         }
     }
 }
