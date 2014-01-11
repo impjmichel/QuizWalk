@@ -115,6 +115,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\MainControl.cs" />
+    <Compile Include="Model1\Questionpoint.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -130,6 +131,33 @@
     <None Include="QuizWalk_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\images\Letters\a.png" />
+    <Content Include="Assets\images\Letters\b.png" />
+    <Content Include="Assets\images\Letters\c.png" />
+    <Content Include="Assets\images\Letters\d.png" />
+    <Content Include="Assets\images\Letters\e.png" />
+    <Content Include="Assets\images\Letters\empty.png" />
+    <Content Include="Assets\images\Letters\f.png" />
+    <Content Include="Assets\images\Letters\g.png" />
+    <Content Include="Assets\images\Letters\h.png" />
+    <Content Include="Assets\images\Letters\i.png" />
+    <Content Include="Assets\images\Letters\j.png" />
+    <Content Include="Assets\images\Letters\k.png" />
+    <Content Include="Assets\images\Letters\l.png" />
+    <Content Include="Assets\images\Letters\m.png" />
+    <Content Include="Assets\images\Letters\n.png" />
+    <Content Include="Assets\images\Letters\o.png" />
+    <Content Include="Assets\images\Letters\p.png" />
+    <Content Include="Assets\images\Letters\q.png" />
+    <Content Include="Assets\images\Letters\r.png" />
+    <Content Include="Assets\images\Letters\s.png" />
+    <Content Include="Assets\images\Letters\t.png" />
+    <Content Include="Assets\images\Letters\u.png" />
+    <Content Include="Assets\images\Letters\v.png" />
+    <Content Include="Assets\images\Letters\w.png" />
+    <Content Include="Assets\images\Letters\x.png" />
+    <Content Include="Assets\images\Letters\y.png" />
+    <Content Include="Assets\images\Letters\z.png" />
     <Content Include="Assets\images\QuizWalk_BG.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
@@ -150,9 +178,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
