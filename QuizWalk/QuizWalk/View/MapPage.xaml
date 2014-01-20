@@ -9,9 +9,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Maps:Map x:Name="Map" Margin="0,120,0,0" Credentials=" AmL-V5amBafAj_wI8RZYt0iPmTQQgX2-NbGpXcqsLaH2FwhBbb7UrTnsKx09udhN "/>
+        <Maps:Map Grid.Row="1" Grid.ColumnSpan="16" x:Name="Map" Margin="0,130,0,0" Credentials=" AmL-V5amBafAj_wI8RZYt0iPmTQQgX2-NbGpXcqsLaH2FwhBbb7UrTnsKx09udhN ">
+
+        </Maps:Map>
+
         <Grid HorizontalAlignment="Left" Height="80" Margin="10,20,0,0" VerticalAlignment="Top" Width="1346">
             <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="80" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
