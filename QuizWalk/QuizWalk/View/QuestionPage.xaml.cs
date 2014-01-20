@@ -13,18 +13,49 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace QuizWalk.View
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class QuestionPage : Page
     {
+        private int questionNumber;
+        private string answerLetterA;
+        private string answerLetterB;
+        private string answerLetterC;
+        private string answerLetterD;
+
         public QuestionPage()
         {
             this.InitializeComponent();
+        }
+
+        public void loadText(int questionNumber)
+        {
+            this.questionNumber = questionNumber;
+            // load the right text to the question block and answer buttons.
+        }
+
+        private void AnsweredA(object sender, TappedRoutedEventArgs e)
+        {
+            //set image of column X to answerLetterA
+            this.Frame.Navigate(typeof(MapPage));
+        }
+
+        private void AnsweredB(object sender, TappedRoutedEventArgs e)
+        {
+            //set image of column X to answerLetterB
+            this.Frame.Navigate(typeof(MapPage));
+        }
+
+        private void AnsweredC(object sender, TappedRoutedEventArgs e)
+        {
+            //set image of column X to answerLetterC
+            this.Frame.Navigate(typeof(MapPage));
+        }
+
+        private void AnsweredD(object sender, TappedRoutedEventArgs e)
+        {
+            //set image of column X to answerLetterD
+            this.Frame.Navigate(typeof(MapPage));
         }
     }
 }
