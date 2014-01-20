@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using QuizWalk.Model1;
 using Windows.Devices.Geolocation.Geofencing;
 using Windows.UI.Core;
+using Bing.Maps.Directions;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -34,6 +35,9 @@ namespace QuizWalk
         public Location currentLoc { get; set; }
         private Pushpin userPin;
         private Dictionary<Questionpoint,Pushpin> qPoints;
+        private WaypointCollection col;
+        private bool isFirstTime = true;
+        public MapShapeLayer RouteLayer = new MapShapeLayer();
 
         public MapPage()
         {
@@ -41,10 +45,18 @@ namespace QuizWalk
             geolocator = new Geolocator();
             userPin = new Pushpin();
             qPoints = new Dictionary<Questionpoint,Pushpin>();
+            col = new WaypointCollection();
             zoomToLocation();
-            createQuestionPoints();  
+            createQuestionPoints();
+
+            //for (int i = 1; i < 10; i++)
+            //{
+            //    string qp = i + "";
+            //    setValues(qPoints, qp, true);
+            //}
             geolocator.PositionChanged += new Windows.Foundation.TypedEventHandler<Geolocator, PositionChangedEventArgs>(geolocator_PositionChanged);
-            drawQuestionPin(qPoints);          
+            drawQuestionPin(qPoints);   
+     
         }
 
         private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
@@ -80,8 +92,16 @@ namespace QuizWalk
                 setUserPin(currentLoc);
                 //System.Diagnostics.Debug.WriteLine("lat: " + currentPos.Coordinate.Latitude);
                 //System.Diagnostics.Debug.WriteLine("lon: " + currentPos.Coordinate.Longitude);
-                Map.SetView(currentLoc, 16.0);                
-                geolocator.DesiredAccuracy = PositionAccuracy.Default;                
+                Map.SetView(currentLoc, 15.0);                
+                geolocator.DesiredAccuracy = PositionAccuracy.Default;  
+              
+                if(isFirstTime)
+                {
+                    addWaypoint(currentLoc);
+                    isFirstTime = false;
+                }
+
+                drawRoute(col);
             }
             catch (Exception d)
             {
@@ -89,6 +109,10 @@ namespace QuizWalk
             }
         }
 
+        /// <summary>
+        /// Method to set the UserPin
+        /// <param name="loc"></param>
+        /// </summary>
         public async void setUserPin(Location loc)
         {            
             userPin = new Pushpin();
@@ -98,6 +122,9 @@ namespace QuizWalk
             Map.Children.Add(userPin);
         }
 
+        /// <summary>
+        /// Method to create a list with Questionpoints
+        /// </summary>
         public void createQuestionPoints()
         {
             Questionpoint qp1 = new Questionpoint("1", 51.585338, 4.791823);
@@ -132,11 +159,34 @@ namespace QuizWalk
             qPoints.Add(qp14, createQuestionPointPins(qp14));
             Questionpoint qp15 = new Questionpoint("15",51.588436, 4.784605);
             qPoints.Add(qp15, createQuestionPointPins(qp15));
+
+            Questionpoint end = new Questionpoint("Einde", 51.586465, 4.791494);
+            qPoints.Add(end, createQuestionPointPins(end));
         }
 
+        /// <summary>
+        /// Method to set the values of a Questionpoint
+        /// <param name="dict"></param>
+        /// <param name="name"></param>
+        ///         the name of the Questionpoint
+        /// <param name="isAnswered"></param>
+        ///         set isAnswered
+        /// </summary>
+        public void setValues(Dictionary<Questionpoint, Pushpin> dict, string name, bool isAnswered)
+        {
+            foreach (KeyValuePair<Questionpoint, Pushpin> pair in dict)
+            {
+                if(pair.Key.name == name)
+                pair.Key.isAnswered = isAnswered;
+            }
+        }
+
+        /// <summary>
+        /// Method to draw a questionpointpin
+        /// <param name="dict"></param>
+        /// </summary>
         public void drawQuestionPin(Dictionary<Questionpoint,Pushpin> dict)
         {
-            
             bool isNext = true;
             foreach(KeyValuePair<Questionpoint, Pushpin> pair in dict)
             {
@@ -147,7 +197,8 @@ namespace QuizWalk
                     Location loc = new Location(pair.Key.latitude,pair.Key.longitude);
                     MapLayer.SetPosition(pair.Value, loc);
                     Map.Children.Add(pair.Value);
-                    if(pair.Key.isAnswered != true)
+                    addWaypoint(loc);
+                    if (pair.Key.isAnswered != true)
                     {
                         isNext = false;
                     }
@@ -155,6 +206,10 @@ namespace QuizWalk
             }
         }
 
+        /// <summary>
+        /// Method to create a questionpointpin
+        /// <param name="qp"></param>
+        /// </summary>
         public Pushpin createQuestionPointPins(Questionpoint qp)
         {
             Location loc = new Location(qp.latitude, qp.longitude);
@@ -168,17 +223,58 @@ namespace QuizWalk
             return pp;           
         }
 
+        /// <summary>
+        /// Method to create a geofence
+        /// <param name="l"></param>
+        /// <param name="name"></param>
+        ///         name of the geofence
+        /// </summary>
         public Geofence createGeofence(Location l, String name)
         {
             Geofence fence = new Geofence(name, new Geocircle(new BasicGeoposition { Altitude = 0.0, Latitude = l.Latitude, Longitude = l.Longitude }, 10));
             return fence;
         }
 
-        public async void drawRoute()
+        /// <summary>
+        /// Method to draw a route between pins
+        /// <param name="col"></param>
+        /// </summary>
+        public async void drawRoute(WaypointCollection col)
         {
 
+            RouteLayer.Shapes.Clear();
+
+            DirectionsManager manager = Map.DirectionsManager;
+            manager.RequestOptions.RouteMode = RouteModeOption.Walking;
+            manager.Waypoints = col;
+            manager.RenderOptions.WaypointPushpinOptions.Visible = false;
+
+            RouteResponse resp = await manager.CalculateDirectionsAsync();
+            resp.Routes[0].RoutePath.LineWidth = 10.0;
+            resp.Routes[0].RoutePath.LineColor = new Windows.UI.Color { A = 200, R = 200, B = 0, G = 2 };
+
+            LocationCollection locs = new LocationCollection();
+            foreach(Location l in resp.Routes[0].RoutePath.PathPoints)
+            {
+                locs.Add(l);
+            }
+
+            MapPolyline line = new MapPolyline {Locations = locs};
+            line.Color = new Windows.UI.Color { A = 100, G = 0, B = 200, R = 0 };
+            line.Visible = true;
+            line.Width = 10.0;
+            RouteLayer.Shapes.Add(line);
+            Map.ShapeLayers.Add(RouteLayer);
         }
 
+        /// <summary>
+        /// Method to add waypoints to a collection
+        /// <param name="loc"></param>
+        /// </summary>
+        public void addWaypoint(Location loc)
+        {
+            col.Add(new Waypoint(loc));
+        }
 
         /// <summary>
         /// Method to set the image in the columns
