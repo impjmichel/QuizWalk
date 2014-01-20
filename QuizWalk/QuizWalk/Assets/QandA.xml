@@ -4,135 +4,135 @@
     <Question number="1">
       <Ask>Which female artist had a single that debuted at #1 on the US Billboard Hot 100 in 2010?</Ask>
       <Answers>
-        <AnswerA>[Z] : Ke$ha</AnswerA>
-        <AnswerB>[R] : Rihanna</AnswerB>
-        <AnswerC>[D] : Pink</AnswerC>
-        <AnswerD>[G] : Lady Gaga</AnswerD>
+        <AnswerA letter="z">[Z] : Ke$ha</AnswerA>
+        <AnswerB letter="r">[R] : Rihanna</AnswerB>
+        <AnswerC letter="d">[D] : Pink</AnswerC>
+        <AnswerD letter="g">[G] : Lady Gaga</AnswerD>
       </Answers>
     </Question>
     <Question number="2">
       <Ask>In which song would you find the lyrics "don't be fancy, just get dancy"?</Ask>
       <Answers>
-        <AnswerA>[O] : 'All The Lovers'</AnswerA>
-        <AnswerB>[C] : 'Not Myself Tonight'</AnswerB>
-        <AnswerC>[F] : 'Commander'</AnswerC>
-        <AnswerD>[G] : 'Raise Your Glass'</AnswerD>
+        <AnswerA letter="o">[O] : 'All The Lovers'</AnswerA>
+        <AnswerB letter="d">[C] : 'Not Myself Tonight'</AnswerB>
+        <AnswerC letter="f">[F] : 'Commander'</AnswerC>
+        <AnswerD letter="g">[G] : 'Raise Your Glass'</AnswerD>
       </Answers>
     </Question>
     <Question number="3">
       <Ask>Complete the title of Nicki Minaj's debut studio album: 'Pink ______'?</Ask>
       <Answers>
-        <AnswerA>[O] : Monday</AnswerA>
-        <AnswerB>[L] : Saturday</AnswerB>
-        <AnswerC>[S] : Sunday</AnswerC>
-        <AnswerD>[D] : Friday</AnswerD>
+        <AnswerA letter="o">[O] : Monday</AnswerA>
+        <AnswerB letter="l">[L] : Saturday</AnswerB>
+        <AnswerC letter="s">[S] : Sunday</AnswerC>
+        <AnswerD letter="d">[D] : Friday</AnswerD>
       </Answers>
     </Question>
     <Question number="4">
       <Ask>Which British singer had a #1 hit on the UK Singles chart with 'Promise This'?</Ask>
       <Answers>
-        <AnswerA>[P] : Katie Melua</AnswerA>
-        <AnswerB>[I] : Cheryl Cole</AnswerB>
-        <AnswerC>[K] : Corinne Railey Rae</AnswerC>
-        <AnswerD>[R] : Dido</AnswerD>
+        <AnswerA letter="p">[P] : Katie Melua</AnswerA>
+        <AnswerB letter="i">[I] : Cheryl Cole</AnswerB>
+        <AnswerC letter="k">[K] : Corinne Railey Rae</AnswerC>
+        <AnswerD letter="r">[R] : Dido</AnswerD>
       </Answers>
     </Question>
     <Question number="5">
       <Ask>According to 'Telephone', where did Lady Gaga leave her head and heart?</Ask>
       <Answers>
-        <AnswerA>[X] : bar</AnswerA>
-        <AnswerB>[E] : club</AnswerB>
-        <AnswerC>[N] : studio</AnswerC>
-        <AnswerD>[G] : dancefloor</AnswerD>
+        <AnswerA letter="x">[X] : bar</AnswerA>
+        <AnswerB letter="e">[E] : club</AnswerB>
+        <AnswerC letter="n">[N] : studio</AnswerC>
+        <AnswerD letter="g">[G] : dancefloor</AnswerD>
       </Answers>
     </Question>
     <Question number="6">
       <Ask>Katy Perry had only two singles from her album 'Teenage Dream' that went to #1 on the US Billboard Hot 100.</Ask>
       <Answers>
-        <AnswerA>[E] : True</AnswerA>
-        <AnswerB>[N] : False</AnswerB>
-        <AnswerC>[Q] : All of above options.</AnswerC>
-        <AnswerD>[Q] : Neither of above options.</AnswerD>
+        <AnswerA letter="e">[E] : True</AnswerA>
+        <AnswerB letter="n">[N] : False</AnswerB>
+        <AnswerC letter="q">[Q] : All of above options.</AnswerC>
+        <AnswerD letter="q">[Q] : Neither of above options.</AnswerD>
       </Answers>
     </Question>
     <Question number="7">
       <Ask>In the song 'Airplanes', what is it that guest vocalist Hayley Williams could really use 'right now'?</Ask>
       <Answers>
-        <AnswerA>[B] : shooting stars</AnswerA>
-        <AnswerB>[Z] : a wish</AnswerB>
-        <AnswerC>[I] : airplanes</AnswerC>
-        <AnswerD>[W] : a mixtape</AnswerD>
+        <AnswerA letter="b">[B] : shooting stars</AnswerA>
+        <AnswerB letter="z">[Z] : a wish</AnswerB>
+        <AnswerC letter="i">[I] : airplanes</AnswerC>
+        <AnswerD letter="w">[W] : a mixtape</AnswerD>
       </Answers>
     </Question>
     <Question number="8">
       <Ask>Taoi Cruz's song 'Higher' was made into four different versions: one in which he sings solo, and three others which feature different guest vocalists. Which one was not part of the 'Higher' production?</Ask>
       <Answers>
-        <AnswerA>[L] : K3</AnswerA>
-        <AnswerB>[T] : Kylie Minogue</AnswerB>
-        <AnswerC>[A] : Pixie Lott</AnswerC>
-        <AnswerD>[X] : Travie McCoy</AnswerD>
+        <AnswerA letter="l">[L] : K3</AnswerA>
+        <AnswerB letter="t">[T] : Kylie Minogue</AnswerB>
+        <AnswerC letter="a">[A] : Pixie Lott</AnswerC>
+        <AnswerD letter="x">[X] : Travie McCoy</AnswerD>
       </Answers>
     </Question>
     <Question number="9">
       <Ask>'Like A G6' features the vocals of Far East Movement, Dev and what electronic music group?</Ask>
       <Answers>
-        <AnswerA>[F] : 3OH!3</AnswerA>
-        <AnswerB>[B] : The Cataracs</AnswerB>
-        <AnswerC>[O] : Goldfrapp</AnswerC>
-        <AnswerD>[S] : Locnville</AnswerD>
+        <AnswerA letter="f">[F] : 3OH!3</AnswerA>
+        <AnswerB letter="b">[B] : The Cataracs</AnswerB>
+        <AnswerC letter="o">[O] : Goldfrapp</AnswerC>
+        <AnswerD letter="s">[S] : Locnville</AnswerD>
       </Answers>
     </Question>
     <Question number="10">
       <Ask>Every year since 2007, DJ Earworm has done a mash-up of Billboard's top 25 songs of that year, which is part of 'United State of Pop' series. What was 2010's version called?</Ask>
       <Answers>
-        <AnswerA>[E] : 'Viva La Pop'</AnswerA>
-        <AnswerB>[G] : 'Don't Stop The Pop'</AnswerB>
-        <AnswerC>[Z] : 'Blame It on the Pop'</AnswerC>
-        <AnswerD>[Q] : 'Like OMG, Baby'</AnswerD>
+        <AnswerA letter="e">[E] : 'Viva La Pop'</AnswerA>
+        <AnswerB letter="g">[G] : 'Don't Stop The Pop'</AnswerB>
+        <AnswerC letter="z">[Z] : 'Blame It on the Pop'</AnswerC>
+        <AnswerD letter="q">[Q] : 'Like OMG, Baby'</AnswerD>
       </Answers>
     </Question>
     <Question number="11">
       <Ask>Who sings 'Can't Be Friends'?</Ask>
       <Answers>
-        <AnswerA>[N] : Mario</AnswerA>
-        <AnswerB>[I] : Trey Songz</AnswerB>
-        <AnswerC>[O] : Omarion</AnswerC>
-        <AnswerD>[D] : Diddy Dirty Money</AnswerD>
+        <AnswerA letter="n">[N] : Mario</AnswerA>
+        <AnswerB letter="i">[I] : Trey Songz</AnswerB>
+        <AnswerC letter="o">[O] : Omarion</AnswerC>
+        <AnswerD letter="d">[D] : Diddy Dirty Money</AnswerD>
       </Answers>
     </Question>
     <Question number="12">
       <Ask>In what song would Shakira steal your clothes and wear them if they fit her?</Ask>
       <Answers>
-        <AnswerA>[N] : 'Waka Waka'</AnswerA>
-        <AnswerB>[J] : 'Sal El Sol'</AnswerB>
-        <AnswerC>[L] : 'Loca'</AnswerC>
-        <AnswerD>[R] : 'Gypsy'</AnswerD>
+        <AnswerA letter="n">[N] : 'Waka Waka'</AnswerA>
+        <AnswerB letter="j">[J] : 'Sal El Sol'</AnswerB>
+        <AnswerC letter="l">[L] : 'Loca'</AnswerC>
+        <AnswerD letter="r">[R] : 'Gypsy'</AnswerD>
       </Answers>
       <Question number="13">
         <Ask>'Te Amo' is the only 2010 Rihanna single not to make it to the top of any chart.</Ask>
         <Answers>
-          <AnswerA>[B] : True</AnswerA>
-          <AnswerB>[E] : False</AnswerB>
-          <AnswerC></AnswerC>
-          <AnswerD></AnswerD>
+          <AnswerA letter="b">[B] : True</AnswerA>
+          <AnswerB letter="e">[E] : False</AnswerB>
+          <AnswerC letter=""></AnswerC>
+          <AnswerD letter=""></AnswerD>
         </Answers>
       </Question>
       <Question number="14">
         <Ask>'Un-Thinkable' by Alicia Keys features backing vocals from which male artist who is not formally credited with vocals but is given credit in writing?</Ask>
         <Answers>
-          <AnswerA>[W] : Adam Levine</AnswerA>
-          <AnswerB>[I] : Justin Timberlake</AnswerB>
-          <AnswerC>[G] : Drake</AnswerC>
-          <AnswerD>[A] : Ryan Tedder</AnswerD>
+          <AnswerA letter="w">[W] : Adam Levine</AnswerA>
+          <AnswerB letter="i">[I] : Justin Timberlake</AnswerB>
+          <AnswerC letter="g">[G] : Drake</AnswerC>
+          <AnswerD letter="a">[A] : Ryan Tedder</AnswerD>
         </Answers>
       </Question>
       <Question number="15">
         <Ask>Christina Aguilera's album in 2010 was called 'Bionic'.</Ask>
         <Answers>
-          <AnswerA>[A] : True</AnswerA>
-          <AnswerB>[D] : False</AnswerB>
-          <AnswerC></AnswerC>
-          <AnswerD></AnswerD>
+          <AnswerA letter="a">[A] : True</AnswerA>
+          <AnswerB letter="d">[D] : False</AnswerB>
+          <AnswerC letter=""></AnswerC>
+          <AnswerD letter=""></AnswerD>
         </Answers>
       </Question>
     </Question>
