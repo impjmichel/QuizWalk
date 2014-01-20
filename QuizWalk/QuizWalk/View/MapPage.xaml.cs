@@ -78,9 +78,9 @@ namespace QuizWalk
                 Geoposition currentPos = await geolocator.GetGeopositionAsync();
                 currentLoc = new Location(currentPos.Coordinate.Latitude, currentPos.Coordinate.Longitude);
                 setUserPin(currentLoc);
-                System.Diagnostics.Debug.WriteLine("lat: " + currentPos.Coordinate.Latitude);
-                System.Diagnostics.Debug.WriteLine("lon: " + currentPos.Coordinate.Longitude);
-                Map.SetView(currentLoc, 15.0);                
+                //System.Diagnostics.Debug.WriteLine("lat: " + currentPos.Coordinate.Latitude);
+                //System.Diagnostics.Debug.WriteLine("lon: " + currentPos.Coordinate.Longitude);
+                Map.SetView(currentLoc, 16.0);                
                 geolocator.DesiredAccuracy = PositionAccuracy.Default;                
             }
             catch (Exception d)
