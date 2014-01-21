@@ -80,21 +80,25 @@ namespace QuizWalk.View
         private void AnsweredA(object sender, TappedRoutedEventArgs e)
         {
             MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterA);
+            MapPage.getInstance().setValues(questionNumber.ToString(), true);
         }
 
         private void AnsweredB(object sender, TappedRoutedEventArgs e)
         {
             MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterB);
+            MapPage.getInstance().setValues(questionNumber.ToString(), true);
         }
 
         private void AnsweredC(object sender, TappedRoutedEventArgs e)
         {
             MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterC);
+            MapPage.getInstance().setValues(questionNumber.ToString(), true);
         }
 
         private void AnsweredD(object sender, TappedRoutedEventArgs e)
         {
             MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterD);
+            MapPage.getInstance().setValues(questionNumber.ToString(), true);
         }
 
         private int getMapPageColumn(int questionNr)
