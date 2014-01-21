@@ -265,7 +265,13 @@ namespace QuizWalk
         /// </summary>
         public Geofence createGeofence(Location l, String name)
         {
-            Geofence fence = new Geofence(name, new Geocircle(new BasicGeoposition { Altitude = 0.0, Latitude = l.Latitude, Longitude = l.Longitude }, 10));
+            MonitoredGeofenceStates mask = 0;
+
+            mask |= MonitoredGeofenceStates.Entered;
+            mask |= MonitoredGeofenceStates.Exited;
+
+            Geofence fence = new Geofence(name, new Geocircle(new BasicGeoposition { Altitude = 0.0, Latitude = l.Latitude, Longitude = l.Longitude }, 10),mask,true, new TimeSpan(2));
+            
             return fence;
         }
 
@@ -310,6 +316,11 @@ namespace QuizWalk
             col.Add(new Waypoint(loc));
         }
 
+        /// <summary>
+        /// Geofence handler
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// </summary>
         void Current_GeofenceStateChanged(GeofenceMonitor sender, object args)
         {
             var reports = sender.ReadReports();
@@ -321,31 +332,18 @@ namespace QuizWalk
 
                 if (state == GeofenceState.Exited)
                 {
-                    //if (checkIfInGeofence() == false)
-                    //{
-
-                    //}
+                    System.Diagnostics.Debug.WriteLine("geofence exited");
+                    //QuestionFlayout.show();
                 }
 
                 if (state == GeofenceState.Entered)
                 {
                     System.Diagnostics.Debug.WriteLine("geofence entered");
+                    //QuestionFlayout.show();
                 }
             }
         }
-
-        //public bool checkIfInGeofence()
-        //{
-        //    foreach (Sight s in sights)
-        //    {
-        //        if (inRadius(new Bing.Maps.Location(double.Parse(s.lat), double.Parse(s.longi)), userLoc, 0.01))
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
-
+        
         /// <summary>
         /// Method to set the image in the columns
         /// </summary>
