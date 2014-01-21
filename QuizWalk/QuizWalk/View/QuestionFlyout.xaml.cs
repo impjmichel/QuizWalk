@@ -32,7 +32,7 @@ namespace QuizWalk.View
             this.questionNumber = questionNumber;
             model = 
                 (
-                from c in System.Xml.Linq.XDocument.Load("QandA.xml").Root.Descendants("Question")
+                from c in System.Xml.Linq.XDocument.Load("Assets/QandA.xml").Root.Descendants("Question")
                 where c.Attribute("number").Equals(questionNumber.ToString())
                 select
                 new QandAmodel(c.Element("Ask").ToString(), 
