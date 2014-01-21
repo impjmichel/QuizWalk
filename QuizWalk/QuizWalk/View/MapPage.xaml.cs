@@ -34,12 +34,14 @@ namespace QuizWalk
     {
         private static MapPage instance;
         private Geolocator geolocator;
-        public Location currentLoc { get; set; }
+        private Location currentLoc { get; set; }
         private Pushpin userPin;
         private Dictionary<Questionpoint,Pushpin> qPoints;
         private WaypointCollection col;
         private bool isFirstTime = true;
-        public MapShapeLayer RouteLayer = new MapShapeLayer();
+        private MapShapeLayer RouteLayer = new MapShapeLayer();
+        public QuestionFlyout QFlyaout;
+        private int count = 1;
 
         public MapPage()
         {
@@ -48,7 +50,7 @@ namespace QuizWalk
             userPin = new Pushpin();
             qPoints = new Dictionary<Questionpoint,Pushpin>();
             col = new WaypointCollection();
-            zoomToLocation();
+            QFlyaout = new QuestionFlyout();
             createQuestionPoints();
 
             //for (int i = 1; i < 10; i++)
@@ -59,7 +61,8 @@ namespace QuizWalk
             geolocator.PositionChanged += new Windows.Foundation.TypedEventHandler<Geolocator, PositionChangedEventArgs>(geolocator_PositionChanged);
             drawQuestionPin(qPoints);
             GeofenceMonitor.Current.GeofenceStateChanged += Current_GeofenceStateChanged;
-     
+
+            zoomToLocation();
         }
 
         private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
@@ -281,7 +284,6 @@ namespace QuizWalk
         /// </summary>
         public async void drawRoute(WaypointCollection col)
         {
-
             RouteLayer.Shapes.Clear();
 
             DirectionsManager manager = Map.DirectionsManager;
@@ -333,13 +335,18 @@ namespace QuizWalk
                 if (state == GeofenceState.Exited)
                 {
                     System.Diagnostics.Debug.WriteLine("geofence exited");
-                    //QuestionFlayout.show();
                 }
 
                 if (state == GeofenceState.Entered)
                 {
-                    System.Diagnostics.Debug.WriteLine("geofence entered");
-                    //QuestionFlayout.show();
+                    this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
+                    () =>
+                    {
+                        System.Diagnostics.Debug.WriteLine("geofence entered");
+                        QFlyaout.loadText(count);
+                        QFlyaout.Show();
+                    }));
+                    count++;
                 }
             }
         }
