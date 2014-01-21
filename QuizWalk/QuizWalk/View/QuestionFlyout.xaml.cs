@@ -70,11 +70,11 @@ namespace QuizWalk.View
             List<QandAmodel> list = questions.ToList<QandAmodel>();
 
             System.Diagnostics.Debug.WriteLine(list.Count);
-            QuestionBlock.Text = model.question;
-            AnswerOne.Content = model.answerA;
-            AnswerTwo.Content = model.answerB;
-            AnswerThree.Content = model.answerC;
-            AnswerFour.Content = model.answerD;
+            //QuestionBlock.Text = model.question;
+            //AnswerOne.Content = model.answerA;
+            //AnswerTwo.Content = model.answerB;
+            //AnswerThree.Content = model.answerC;
+            //AnswerFour.Content = model.answerD;
         }
 
         private void AnsweredA(object sender, TappedRoutedEventArgs e)

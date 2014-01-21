@@ -52,12 +52,6 @@ namespace QuizWalk
             col = new WaypointCollection();
             QFlyaout = new QuestionFlyout();
             createQuestionPoints();
-
-            //for (int i = 1; i < 10; i++)
-            //{
-            //    string qp = i + "";
-            //    setValues(qPoints, qp, true);
-            //}
             geolocator.PositionChanged += new Windows.Foundation.TypedEventHandler<Geolocator, PositionChangedEventArgs>(geolocator_PositionChanged);
             drawQuestionPin(qPoints);
             GeofenceMonitor.Current.GeofenceStateChanged += Current_GeofenceStateChanged;
@@ -345,7 +339,7 @@ namespace QuizWalk
                     {
                         System.Diagnostics.Debug.WriteLine("geofence entered");
                         QFlyaout.loadText2(count);
-                        QFlyaout.Show();
+                        QFlyaout.Show();                        
                     }));
                 }
             }
