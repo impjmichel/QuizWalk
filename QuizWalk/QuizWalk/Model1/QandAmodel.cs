@@ -30,5 +30,10 @@ namespace QuizWalk.Model1
             this.letterC = letterC;
             this.letterD = letterD;
         }
+
+        public QandAmodel()
+        {
+
+        }
     }
 }

@@ -344,7 +344,7 @@ namespace QuizWalk
                     () =>
                     {
                         System.Diagnostics.Debug.WriteLine("geofence entered");
-                        QFlyaout.loadText(count);
+                        QFlyaout.loadText2(count);
                         QFlyaout.Show();
                     }));
                 }

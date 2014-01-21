@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Quiz>
   <Questions city="Breda">
-    <Question number="1">
+    <Question Id="1">
       <Ask>Which female artist had a single that debuted at #1 on the US Billboard Hot 100 in 2010?</Ask>
       <Answers>
         <AnswerA letter="z">[Z] : Ke$ha</AnswerA>
@@ -10,7 +10,7 @@
         <AnswerD letter="g">[G] : Lady Gaga</AnswerD>
       </Answers>
     </Question>
-    <Question number="2">
+    <Question Id="2">
       <Ask>In which song would you find the lyrics "don't be fancy, just get dancy"?</Ask>
       <Answers>
         <AnswerA letter="o">[O] : 'All The Lovers'</AnswerA>
@@ -19,7 +19,7 @@
         <AnswerD letter="g">[G] : 'Raise Your Glass'</AnswerD>
       </Answers>
     </Question>
-    <Question number="3">
+    <Question Id="3">
       <Ask>Complete the title of Nicki Minaj's debut studio album: 'Pink ______'?</Ask>
       <Answers>
         <AnswerA letter="o">[O] : Monday</AnswerA>
@@ -28,7 +28,7 @@
         <AnswerD letter="d">[D] : Friday</AnswerD>
       </Answers>
     </Question>
-    <Question number="4">
+    <Question Id="4">
       <Ask>Which British singer had a #1 hit on the UK Singles chart with 'Promise This'?</Ask>
       <Answers>
         <AnswerA letter="p">[P] : Katie Melua</AnswerA>
@@ -37,7 +37,7 @@
         <AnswerD letter="r">[R] : Dido</AnswerD>
       </Answers>
     </Question>
-    <Question number="5">
+    <Question Id="5">
       <Ask>According to 'Telephone', where did Lady Gaga leave her head and heart?</Ask>
       <Answers>
         <AnswerA letter="x">[X] : bar</AnswerA>
@@ -46,7 +46,7 @@
         <AnswerD letter="g">[G] : dancefloor</AnswerD>
       </Answers>
     </Question>
-    <Question number="6">
+    <Question Id="6">
       <Ask>Katy Perry had only two singles from her album 'Teenage Dream' that went to #1 on the US Billboard Hot 100.</Ask>
       <Answers>
         <AnswerA letter="e">[E] : True</AnswerA>
@@ -55,7 +55,7 @@
         <AnswerD letter="q">[Q] : Neither of above options.</AnswerD>
       </Answers>
     </Question>
-    <Question number="7">
+    <Question Id="7">
       <Ask>In the song 'Airplanes', what is it that guest vocalist Hayley Williams could really use 'right now'?</Ask>
       <Answers>
         <AnswerA letter="b">[B] : shooting stars</AnswerA>
@@ -64,7 +64,7 @@
         <AnswerD letter="w">[W] : a mixtape</AnswerD>
       </Answers>
     </Question>
-    <Question number="8">
+    <Question Id="8">
       <Ask>Taoi Cruz's song 'Higher' was made into four different versions: one in which he sings solo, and three others which feature different guest vocalists. Which one was not part of the 'Higher' production?</Ask>
       <Answers>
         <AnswerA letter="l">[L] : K3</AnswerA>
@@ -73,7 +73,7 @@
         <AnswerD letter="x">[X] : Travie McCoy</AnswerD>
       </Answers>
     </Question>
-    <Question number="9">
+    <Question Id="9">
       <Ask>'Like A G6' features the vocals of Far East Movement, Dev and what electronic music group?</Ask>
       <Answers>
         <AnswerA letter="f">[F] : 3OH!3</AnswerA>
@@ -82,7 +82,7 @@
         <AnswerD letter="s">[S] : Locnville</AnswerD>
       </Answers>
     </Question>
-    <Question number="10">
+    <Question Id="10">
       <Ask>Every year since 2007, DJ Earworm has done a mash-up of Billboard's top 25 songs of that year, which is part of 'United State of Pop' series. What was 2010's version called?</Ask>
       <Answers>
         <AnswerA letter="e">[E] : 'Viva La Pop'</AnswerA>
@@ -91,7 +91,7 @@
         <AnswerD letter="q">[Q] : 'Like OMG, Baby'</AnswerD>
       </Answers>
     </Question>
-    <Question number="11">
+    <Question Id="11">
       <Ask>Who sings 'Can't Be Friends'?</Ask>
       <Answers>
         <AnswerA letter="n">[N] : Mario</AnswerA>
@@ -100,7 +100,7 @@
         <AnswerD letter="d">[D] : Diddy Dirty Money</AnswerD>
       </Answers>
     </Question>
-    <Question number="12">
+    <Question Id="12">
       <Ask>In what song would Shakira steal your clothes and wear them if they fit her?</Ask>
       <Answers>
         <AnswerA letter="n">[N] : 'Waka Waka'</AnswerA>
@@ -108,7 +108,7 @@
         <AnswerC letter="l">[L] : 'Loca'</AnswerC>
         <AnswerD letter="r">[R] : 'Gypsy'</AnswerD>
       </Answers>
-      <Question number="13">
+      <Question Id="13">
         <Ask>'Te Amo' is the only 2010 Rihanna single not to make it to the top of any chart.</Ask>
         <Answers>
           <AnswerA letter="b">[B] : True</AnswerA>
@@ -117,7 +117,7 @@
           <AnswerD letter=""></AnswerD>
         </Answers>
       </Question>
-      <Question number="14">
+      <Question Id="14">
         <Ask>'Un-Thinkable' by Alicia Keys features backing vocals from which male artist who is not formally credited with vocals but is given credit in writing?</Ask>
         <Answers>
           <AnswerA letter="w">[W] : Adam Levine</AnswerA>
@@ -126,7 +126,7 @@
           <AnswerD letter="a">[A] : Ryan Tedder</AnswerD>
         </Answers>
       </Question>
-      <Question number="15">
+      <Question Id="15">
         <Ask>Christina Aguilera's album in 2010 was called 'Bionic'.</Ask>
         <Answers>
           <AnswerA letter="a">[A] : True</AnswerA>

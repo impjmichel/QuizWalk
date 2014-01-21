@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Xml.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -41,6 +42,34 @@ namespace QuizWalk.View
             
                 ).First();
 
+            QuestionBlock.Text = model.question;
+            AnswerOne.Content = model.answerA;
+            AnswerTwo.Content = model.answerB;
+            AnswerThree.Content = model.answerC;
+            AnswerFour.Content = model.answerD;
+        }
+
+        public void loadText2(int questionNumber)
+        {
+            XDocument doc = XDocument.Load("Assets/QandA.xml");
+            var questions = from elm in doc.Descendants("Question")
+                         where (int)elm.Attribute("Id") == questionNumber
+                         select new QandAmodel
+                         {
+                            question = (string)elm.Element("question"),
+                            answerA = (string)elm.Element("answerA"),
+                            answerB = (string)elm.Element("answerB"),
+                            answerC = (string)elm.Element("answerC"),
+                            answerD = (string)elm.Element("answerD"),
+                            letterA = (string)elm.Element("letterA"),
+                            letterB = (string)elm.Element("letterB"),
+                            letterC = (string)elm.Element("letterC"),
+                            letterD = (string)elm.Element("letterD")
+                         };
+
+            List<QandAmodel> list = questions.ToList<QandAmodel>();
+
+            System.Diagnostics.Debug.WriteLine(list.Count);
             QuestionBlock.Text = model.question;
             AnswerOne.Content = model.answerA;
             AnswerTwo.Content = model.answerB;
