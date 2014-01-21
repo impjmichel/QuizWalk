@@ -25,56 +25,34 @@ namespace QuizWalk.View
         public QuestionFlyout()
         {
             this.InitializeComponent();
-            
-        }
-
-        public void loadText(int questionNumber)
-        {
-            this.questionNumber = questionNumber;
-            model = 
-                (
-                from c in System.Xml.Linq.XDocument.Load("Assets/QandA.xml").Root.Descendants("Question")
-                where c.Attribute("number").Equals(questionNumber.ToString())
-                select
-                new QandAmodel(c.Element("Ask").ToString(), 
-                    c.Element("AnswerA").ToString(), c.Element("AnswerB").ToString(), c.Element("AnswerC").ToString(), c.Element("AnswerD").ToString(),
-                    c.Element("AnswerA").Attribute("letter").ToString(), c.Element("AnswerB").Attribute("letter").ToString(), c.Element("AnswerC").Attribute("letter").ToString(), c.Element("AnswerD").Attribute("letter").ToString())
-            
-                ).First();
-
-            QuestionBlock.Text = model.question;
-            AnswerOne.Content = model.answerA;
-            AnswerTwo.Content = model.answerB;
-            AnswerThree.Content = model.answerC;
-            AnswerFour.Content = model.answerD;
         }
 
         public void loadText2(int questionNumber)
         {
+            this.questionNumber = questionNumber;
             XDocument doc = XDocument.Load("Assets/QandA.xml");
             var questions = from elm in doc.Descendants("Question")
                          where (int)elm.Attribute("Id") == questionNumber
                          select new QandAmodel
                          {
-                            question = (string)elm.Element("question"),
-                            answerA = (string)elm.Element("answerA"),
-                            answerB = (string)elm.Element("answerB"),
-                            answerC = (string)elm.Element("answerC"),
-                            answerD = (string)elm.Element("answerD"),
-                            letterA = (string)elm.Element("letterA"),
-                            letterB = (string)elm.Element("letterB"),
-                            letterC = (string)elm.Element("letterC"),
-                            letterD = (string)elm.Element("letterD")
+                            question = (string)elm.Element("Ask"),
+                            answerA = (string)elm.Element("AnswerA"),
+                            answerB = (string)elm.Element("AnswerB"),
+                            answerC = (string)elm.Element("AnswerC"),
+                            answerD = (string)elm.Element("AnswerD"),
+                            letterA = (string)elm.Element("AnswerA").Attribute("letter"),
+                            letterB = (string)elm.Element("AnswerB").Attribute("letter"),
+                            letterC = (string)elm.Element("AnswerC").Attribute("letter"),
+                            letterD = (string)elm.Element("AnswerD").Attribute("letter")
                          };
 
             List<QandAmodel> list = questions.ToList<QandAmodel>();
-
-            System.Diagnostics.Debug.WriteLine(list.Count);
-            //QuestionBlock.Text = model.question;
-            //AnswerOne.Content = model.answerA;
-            //AnswerTwo.Content = model.answerB;
-            //AnswerThree.Content = model.answerC;
-            //AnswerFour.Content = model.answerD;
+            model = list[0];
+            QuestionBlock.Text = model.question;
+            AnswerOne.Content = model.answerA;
+            AnswerTwo.Content = model.answerB;
+            AnswerThree.Content = model.answerC;
+            AnswerFour.Content = model.answerD;
         }
 
         private void AnsweredA(object sender, TappedRoutedEventArgs e)
