@@ -101,11 +101,10 @@ namespace QuizWalk
               
                 if(isFirstTime)
                 {
-                    addWaypoint(currentLoc);
                     isFirstTime = false;
+                    drawRoute(new Waypoint(new Location(51.585338, 4.791823)));
                 }
-
-                drawRoute(col);
+                
             }
             catch (Exception d)
             {
@@ -192,15 +191,20 @@ namespace QuizWalk
         /// </summary>
         public void setValues(string name, bool isAnswered)
         {
+            Waypoint loc = null;
             foreach (KeyValuePair<Questionpoint, Pushpin> pair in qPoints)
             {
-                if(pair.Key.name == name)
-                pair.Key.isAnswered = isAnswered;
+                if (pair.Key.name == name)
+                {
+                    pair.Key.isAnswered = isAnswered;
+                    loc = new Waypoint(new Location(pair.Key.latitude, pair.Key.longitude));
+                }
             }
             count++;
             QFlyaout.Hide();
             drawQuestionPin(qPoints);
-            drawRoute(col);
+            if(loc != null)
+                drawRoute(loc);
         }
 
         public void addGeofence(Dictionary<Questionpoint, Pushpin> dict)
@@ -282,13 +286,22 @@ namespace QuizWalk
         /// Method to draw a route between pins
         /// <param name="col"></param>
         /// </summary>
-        public async void drawRoute(WaypointCollection col)
+        public async void drawRoute(Waypoint wPoint)
         {
             RouteLayer.Shapes.Clear();
 
+            WaypointCollection wCol = new WaypointCollection();
+            wCol.Add(new Waypoint(currentLoc));
+            wCol.Add(wPoint);
+
+            foreach(Waypoint w in wCol)
+            {
+                System.Diagnostics.Debug.WriteLine("latt = " + w.Location.Latitude);
+            }
+
             DirectionsManager manager = Map.DirectionsManager;
             manager.RequestOptions.RouteMode = RouteModeOption.Walking;
-            manager.Waypoints = col;
+            manager.Waypoints = wCol;
             manager.RenderOptions.WaypointPushpinOptions.Visible = false;
 
             RouteResponse resp = await manager.CalculateDirectionsAsync();
@@ -298,7 +311,7 @@ namespace QuizWalk
             LocationCollection locs = new LocationCollection();
             foreach(Location l in resp.Routes[0].RoutePath.PathPoints)
             {
-                locs.Add(l);
+                locs.Add(l);                
             }
 
             MapPolyline line = new MapPolyline {Locations = locs};
@@ -329,7 +342,8 @@ namespace QuizWalk
             foreach (GeofenceStateChangeReport report in reports)
             {
                 GeofenceState state = report.NewState;
-
+                int id = int.Parse(report.Geofence.Id);
+                System.Diagnostics.Debug.WriteLine(id);
                 Geofence geofence = report.Geofence;
 
                 if (state == GeofenceState.Exited)
@@ -339,13 +353,16 @@ namespace QuizWalk
 
                 if (state == GeofenceState.Entered)
                 {
-                    this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
-                    () =>
+                    if(id == count)
                     {
-                        System.Diagnostics.Debug.WriteLine("geofence entered");
-                        QFlyaout.loadText2(count);
-                        QFlyaout.Show();                        
-                    }));
+                        this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
+                        () =>
+                        {
+                            System.Diagnostics.Debug.WriteLine("geofence entered");
+                            QFlyaout.loadText2(id);
+                            QFlyaout.Show();                        
+                        }));
+                    }
                 }
             }
         }
