@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Xml.Linq.XDocument;
 
 namespace QuizWalk.View
 {
@@ -51,27 +50,61 @@ namespace QuizWalk.View
 
         private void AnsweredA(object sender, TappedRoutedEventArgs e)
         {
-            
+            MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterA);
         }
 
         private void AnsweredB(object sender, TappedRoutedEventArgs e)
         {
-
+            MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterB);
         }
 
         private void AnsweredC(object sender, TappedRoutedEventArgs e)
         {
-
+            MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterC);
         }
 
         private void AnsweredD(object sender, TappedRoutedEventArgs e)
         {
-
+            MapPage.getInstance().changeLetter(getMapPageColumn(questionNumber), model.letterD);
         }
 
         private int getMapPageColumn(int questionNr)
-        {
-            return 0;
+        {          
+            switch(questionNr)
+            {
+                case 1:
+                    return 3;
+                case 2:
+                    return 5;
+                case 3:
+                    return 14;
+                case 4:
+                    return 1;
+                case 5:
+                    return 9;
+                case 6:
+                    return 8;
+                case 7:
+                    return 0;
+                case 8:
+                    return 15;
+                case 9:
+                    return 11;
+                case 10:
+                    return 2;
+                case 11:
+                    return 7;
+                case 12:
+                    return 12;
+                case 13:
+                    return 13;
+                case 14:
+                    return 6;
+                case 15:
+                    return 4;
+                default:
+                    return 10;
+            }
         }
     }
 }
