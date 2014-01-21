@@ -19,6 +19,8 @@ using QuizWalk.Model1;
 using Windows.Devices.Geolocation.Geofencing;
 using Windows.UI.Core;
 using Bing.Maps.Directions;
+using QuizWalk.View;
+using Windows.UI.Popups;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -55,7 +57,8 @@ namespace QuizWalk
             //    setValues(qPoints, qp, true);
             //}
             geolocator.PositionChanged += new Windows.Foundation.TypedEventHandler<Geolocator, PositionChangedEventArgs>(geolocator_PositionChanged);
-            drawQuestionPin(qPoints);   
+            drawQuestionPin(qPoints);
+            GeofenceMonitor.Current.GeofenceStateChanged += Current_GeofenceStateChanged;
      
         }
 
@@ -69,7 +72,9 @@ namespace QuizWalk
                     Location location = new Location(args.Position.Coordinate.Latitude, args.Position.Coordinate.Longitude);
                     
                     //Update the position of the GPS pushpin
-                    MapLayer.SetPosition(userPin, location);     
+                    MapLayer.SetPosition(userPin, location);
+                    //MessageDialog mes = new MessageDialog("user");
+                    //mes.ShowAsync();
 
                 }));
         }
@@ -107,6 +112,18 @@ namespace QuizWalk
             {
                 System.Diagnostics.Debug.WriteLine(d);
             }
+        }
+
+        /// <summary>
+        /// Method to change the color of a pin
+        /// <param name="p"></param>
+        /// </summary>
+        public async void setPinVisited(Pushpin p)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                p.Background = new SolidColorBrush { Color = new Windows.UI.Color { A = 100, R = 100, B = 100, G = 100 } };
+            });
         }
 
         /// <summary>
@@ -162,6 +179,8 @@ namespace QuizWalk
 
             Questionpoint end = new Questionpoint("Einde", 51.586465, 4.791494);
             qPoints.Add(end, createQuestionPointPins(end));
+
+            addGeofence(qPoints);
         }
 
         /// <summary>
@@ -181,6 +200,19 @@ namespace QuizWalk
             }
         }
 
+        public void addGeofence(Dictionary<Questionpoint, Pushpin> dict)
+        {
+            if (GeofenceMonitor.Current.Geofences.Count > 0)
+                GeofenceMonitor.Current.Geofences.Clear();
+
+            foreach (KeyValuePair<Questionpoint, Pushpin> pair in dict)
+            {
+                Location loc = new Location(pair.Key.latitude, pair.Key.longitude);
+                Geofence fence = createGeofence(loc, pair.Key.name);
+                GeofenceMonitor.Current.Geofences.Add(fence);                
+            }            
+        }
+
         /// <summary>
         /// Method to draw a questionpointpin
         /// <param name="dict"></param>
@@ -198,6 +230,10 @@ namespace QuizWalk
                     MapLayer.SetPosition(pair.Value, loc);
                     Map.Children.Add(pair.Value);
                     addWaypoint(loc);
+                                        
+                    if (pair.Key.isAnswered)
+                        setPinVisited(pair.Value);
+
                     if (pair.Key.isAnswered != true)
                     {
                         isNext = false;
@@ -216,10 +252,8 @@ namespace QuizWalk
             Pushpin pp = new Pushpin();
             pp.Name = qp.name;
             pp.Text = qp.name;
-            pp.Background = new SolidColorBrush(new Windows.UI.Color { A = 255, B = 0, G = 100, R = 255 });
+            pp.Background = new SolidColorBrush(new Windows.UI.Color { A = 255, B = 0, G = 100, R = 255 });           
             
-            createGeofence(loc, qp.name);
-
             return pp;           
         }
 
@@ -275,6 +309,42 @@ namespace QuizWalk
         {
             col.Add(new Waypoint(loc));
         }
+
+        void Current_GeofenceStateChanged(GeofenceMonitor sender, object args)
+        {
+            var reports = sender.ReadReports();
+            foreach (GeofenceStateChangeReport report in reports)
+            {
+                GeofenceState state = report.NewState;
+
+                Geofence geofence = report.Geofence;
+
+                if (state == GeofenceState.Exited)
+                {
+                    //if (checkIfInGeofence() == false)
+                    //{
+
+                    //}
+                }
+
+                if (state == GeofenceState.Entered)
+                {
+                    System.Diagnostics.Debug.WriteLine("geofence entered");
+                }
+            }
+        }
+
+        //public bool checkIfInGeofence()
+        //{
+        //    foreach (Sight s in sights)
+        //    {
+        //        if (inRadius(new Bing.Maps.Location(double.Parse(s.lat), double.Parse(s.longi)), userLoc, 0.01))
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
         /// <summary>
         /// Method to set the image in the columns
