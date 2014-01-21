@@ -63,6 +63,8 @@ namespace QuizWalk
             GeofenceMonitor.Current.GeofenceStateChanged += Current_GeofenceStateChanged;
 
             zoomToLocation();
+            if (instance == null)
+                instance = this;
         }
 
         private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
@@ -202,6 +204,9 @@ namespace QuizWalk
                 pair.Key.isAnswered = isAnswered;
             }
             count++;
+            QFlyaout.Hide();
+            drawQuestionPin(qPoints);
+            drawRoute(col);
         }
 
         public void addGeofence(Dictionary<Questionpoint, Pushpin> dict)
