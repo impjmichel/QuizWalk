@@ -194,13 +194,14 @@ namespace QuizWalk
         /// <param name="isAnswered"></param>
         ///         set isAnswered
         /// </summary>
-        public void setValues(Dictionary<Questionpoint, Pushpin> dict, string name, bool isAnswered)
+        public void setValues(string name, bool isAnswered)
         {
-            foreach (KeyValuePair<Questionpoint, Pushpin> pair in dict)
+            foreach (KeyValuePair<Questionpoint, Pushpin> pair in qPoints)
             {
                 if(pair.Key.name == name)
                 pair.Key.isAnswered = isAnswered;
             }
+            count++;
         }
 
         public void addGeofence(Dictionary<Questionpoint, Pushpin> dict)
@@ -346,7 +347,6 @@ namespace QuizWalk
                         QFlyaout.loadText(count);
                         QFlyaout.Show();
                     }));
-                    count++;
                 }
             }
         }
