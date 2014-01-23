@@ -42,6 +42,8 @@ namespace QuizWalk
         private MapShapeLayer RouteLayer = new MapShapeLayer();
         public QuestionFlyout QFlyaout;
         private int count = 1;
+        private Waypoint loc;
+        private Location oldLoc = null;
 
         private DispatcherTimer positionUpdateTimer;
 
@@ -69,7 +71,23 @@ namespace QuizWalk
 
         private async void timer_PositionUpdated(object sender, object e)
         {
+            if(oldLoc != null)
+            System.Diagnostics.Debug.WriteLine("oldLoc = " + oldLoc.Latitude);
+            
+            oldLoc = currentLoc;
             Geoposition pos = await geolocator.GetGeopositionAsync();
+            Location location = new Location(pos.Coordinate.Latitude, pos.Coordinate.Longitude);
+            currentLoc = location;
+            MapLayer.SetPosition(userPin, location);
+
+            //System.Diagnostics.Debug.WriteLine("old = " + oldLoc.Latitude);
+            //System.Diagnostics.Debug.WriteLine("new = " + currentLoc.Latitude);
+
+            if (loc != null)
+            {
+                if(oldLoc.Latitude != currentLoc.Latitude && oldLoc.Longitude != currentLoc.Longitude)
+                    drawRoute(loc);
+            }
         }
 
         private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
@@ -202,14 +220,24 @@ namespace QuizWalk
         /// </summary>
         public void setValues(string name, bool isAnswered)
         {
-            Waypoint loc = null;
+            bool next = false;
+            loc = null;
             foreach (KeyValuePair<Questionpoint, Pushpin> pair in qPoints)
             {
                 if (pair.Key.name == name)
                 {
                     pair.Key.isAnswered = isAnswered;
-                    loc = new Waypoint(new Location(pair.Key.latitude, pair.Key.longitude));
+                    next = true;
                 }
+                else
+                {
+                    if(next)
+                    {
+                        loc = new Waypoint(new Location(pair.Key.latitude, pair.Key.longitude));
+                        next = false;
+                    }
+                }
+                
             }
             count++;
             QFlyaout.Hide();
@@ -305,10 +333,10 @@ namespace QuizWalk
             wCol.Add(new Waypoint(currentLoc));
             wCol.Add(wPoint);
 
-            foreach(Waypoint w in wCol)
-            {
-                System.Diagnostics.Debug.WriteLine("latt = " + w.Location.Latitude);
-            }
+            //foreach(Waypoint w in wCol)
+            //{
+            //    System.Diagnostics.Debug.WriteLine("latt = " + w.Location.Latitude);
+            //}
 
             DirectionsManager manager = Map.DirectionsManager;
             manager.RequestOptions.RouteMode = RouteModeOption.Walking;
@@ -317,7 +345,7 @@ namespace QuizWalk
 
             RouteResponse resp = await manager.CalculateDirectionsAsync();
             resp.Routes[0].RoutePath.LineWidth = 10.0;
-            resp.Routes[0].RoutePath.LineColor = new Windows.UI.Color { A = 200, R = 200, B = 0, G = 2 };
+            //resp.Routes[0].RoutePath.LineColor = new Windows.UI.Color { A = 200, R = 200, B = 0, G = 2 };
 
             LocationCollection locs = new LocationCollection();
             foreach(Location l in resp.Routes[0].RoutePath.PathPoints)
@@ -326,7 +354,7 @@ namespace QuizWalk
             }
 
             MapPolyline line = new MapPolyline {Locations = locs};
-            line.Color = new Windows.UI.Color { A = 100, G = 0, B = 200, R = 0 };
+            line.Color = new Windows.UI.Color { A = 255, G = 0, B = 200, R = 0 };
             line.Visible = true;
             line.Width = 10.0;
             RouteLayer.Shapes.Add(line);
@@ -371,7 +399,7 @@ namespace QuizWalk
                         {
                             System.Diagnostics.Debug.WriteLine("geofence entered");
                             QFlyaout.loadText2(id);
-                            QFlyaout.Show();                        
+                            QFlyaout.Show();
                         }));
                     }
                 }
