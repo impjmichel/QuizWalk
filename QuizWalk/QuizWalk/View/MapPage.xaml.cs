@@ -382,26 +382,35 @@ namespace QuizWalk
             foreach (GeofenceStateChangeReport report in reports)
             {
                 GeofenceState state = report.NewState;
-                int id = int.Parse(report.Geofence.Id);
-                System.Diagnostics.Debug.WriteLine(id);
-                Geofence geofence = report.Geofence;
 
-                if (state == GeofenceState.Exited)
+                if (report.Geofence.Id.Equals("Einde"))
                 {
-                    System.Diagnostics.Debug.WriteLine("geofence exited");
+                    MessageDialog mes = new MessageDialog("Einde");
+                    mes.ShowAsync();
                 }
-
-                if (state == GeofenceState.Entered)
+                else
                 {
-                    if(id == count)
+                    int id = int.Parse(report.Geofence.Id);
+                    System.Diagnostics.Debug.WriteLine(id);
+                    Geofence geofence = report.Geofence;
+
+                    if (state == GeofenceState.Exited)
                     {
-                        this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
-                        () =>
+                        System.Diagnostics.Debug.WriteLine("geofence exited");
+                    }
+
+                    if (state == GeofenceState.Entered)
+                    {
+                        if (id == count)
                         {
-                            System.Diagnostics.Debug.WriteLine("geofence entered");
-                            QFlyaout.loadText2(id);
-                            QFlyaout.Show();
-                        }));
+                            this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
+                            () =>
+                            {
+                                System.Diagnostics.Debug.WriteLine("geofence entered");
+                                QFlyaout.loadText2(id);
+                                QFlyaout.Show();
+                            }));
+                        }
                     }
                 }
             }

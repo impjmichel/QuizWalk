@@ -51,6 +51,7 @@ namespace QuizWalk
             StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDetails.xml");
             if (file == null)
                 return;
+
             using(var fs = await file.OpenAsync(FileAccessMode.ReadWrite))
             {
                 var inStream = fs.GetInputStreamAt(0);
