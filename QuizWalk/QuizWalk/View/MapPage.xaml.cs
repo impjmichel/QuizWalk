@@ -383,12 +383,20 @@ namespace QuizWalk
             {
                 GeofenceState state = report.NewState;
 
-                if (report.Geofence.Id.Equals("Einde") && count >= 15)
+                if (report.Geofence.Id.Equals("Einde") && count > 15)
                 {
-                    if (this.Frame != null)
-                    {
-                        this.Frame.Navigate(typeof(MainPage));
-                    }
+                    await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
+                            () =>
+                            {
+                                var mes = new MessageDialog("You're at the end of the quiz", "The end!");
+                                mes.Commands.Add(new UICommand("Ok",new UICommandInvokedHandler(this.CommandInvokedHandler)));
+                                mes.ShowAsync();
+                                //if (this.Frame != null)
+                                //{
+                                //    this.Frame.Navigate(typeof(MainPage));
+                                //}
+                            }));
+                    
                 }
                 else if(!report.Geofence.Id.Equals("Einde"))
                 {
@@ -415,6 +423,14 @@ namespace QuizWalk
                         }
                     }
                 }
+            }
+        }
+
+        private void CommandInvokedHandler(IUICommand command)
+        {
+            if (this.Frame != null)
+            {
+                this.Frame.Navigate(typeof(MainPage));
             }
         }
         
