@@ -48,25 +48,18 @@ namespace QuizWalk
 
         private async void RestoreAsync()
         {
-            StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDetails");
+            StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDetails.xml");
             if (file == null)
                 return;
-            try
+            using(var fs = await file.OpenAsync(FileAccessMode.ReadWrite))
             {
-                using (var fs = await file.OpenAsync(Windows.Storage.FileAccessMode.Read))
-                {
-                    var inStream = fs.GetInputStreamAt(0);
-                    DataContractSerializer serializer = new DataContractSerializer(typeof(UserData));
-                    data = (UserData)serializer.ReadObject(inStream.AsStreamForRead());
-                    fs.Dispose();
-                }
-                welcomeText.Text = "Choose your quiz, " + data.Name;
+                var inStream = fs.GetInputStreamAt(0);
+                DataContractSerializer serializer = new DataContractSerializer(typeof(UserData));
+                data = (UserData)serializer.ReadObject(inStream.AsStreamForRead());
+                inStream.Dispose();
+                fs.Dispose();
             }
-            catch(UnauthorizedAccessException)
-            {
-                System.Diagnostics.Debug.WriteLine("unauthorized! yet agaaaaaaain!");
-            }
-            
+            welcomeText.Text = "Choose your quiz, " + data.Name;
         }
     }
 }

@@ -33,6 +33,26 @@ namespace QuizWalk.View
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            RestoreAsync();
+        }
+
+        private async void RestoreAsync()
+        {
+            try
+            {
+                StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDetails.xml");
+                if (file == null)
+                    return;
+                if (this.Frame != null)
+                {
+                    this.Frame.Navigate(typeof(MainPage));
+                }
+            }
+            catch (FileNotFoundException) { }
+        }
+
         private void Login_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!NameTextBox.Text.Equals(""))
@@ -48,14 +68,16 @@ namespace QuizWalk.View
 
         private async void SaveAsync()
         {
-            StorageFile userdetailsfile = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDetails", CreationCollisionOption.ReplaceExisting);
+            StorageFile userdetailsfile = await ApplicationData.Current.LocalFolder.CreateFileAsync("UserDetails.xml", CreationCollisionOption.ReplaceExisting);
             IRandomAccessStream raStream = await userdetailsfile.OpenAsync(FileAccessMode.ReadWrite);
             using (IOutputStream outStream = raStream.GetOutputStreamAt(0))
             {
                 DataContractSerializer serializer = new DataContractSerializer(typeof(UserData));
                 serializer.WriteObject(outStream.AsStreamForWrite(), data);
                 await outStream.FlushAsync();
+                outStream.Dispose();
             }
+            raStream.Dispose();
         }
     }
 }
