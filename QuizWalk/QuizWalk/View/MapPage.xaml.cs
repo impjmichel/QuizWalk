@@ -71,8 +71,8 @@ namespace QuizWalk
 
         private async void timer_PositionUpdated(object sender, object e)
         {
-            if(oldLoc != null)
-            System.Diagnostics.Debug.WriteLine("oldLoc = " + oldLoc.Latitude);
+            //if(oldLoc != null)
+            //System.Diagnostics.Debug.WriteLine("oldLoc = " + oldLoc.Latitude);
             
             oldLoc = currentLoc;
             Geoposition pos = await geolocator.GetGeopositionAsync();
@@ -317,7 +317,7 @@ namespace QuizWalk
             mask |= MonitoredGeofenceStates.Entered;
             mask |= MonitoredGeofenceStates.Exited;
 
-            Geofence fence = new Geofence(name, new Geocircle(new BasicGeoposition { Altitude = 0.0, Latitude = l.Latitude, Longitude = l.Longitude }, 10),mask,false, new TimeSpan(0,0,1));
+            Geofence fence = new Geofence(name, new Geocircle(new BasicGeoposition { Altitude = 0.0, Latitude = l.Latitude, Longitude = l.Longitude }, 8),mask,false, new TimeSpan(0,0,1));
             
             return fence;
         }
