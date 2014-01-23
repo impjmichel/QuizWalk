@@ -11,7 +11,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="ms-appx:/Assets/images/QuizWalk_BG.jpg" />
         </Grid.Background>
-        <Button Content="Quiz 1:       Breda" HorizontalAlignment="Left" Height="128" Margin="300,70,0,0" VerticalAlignment="Top" Width="512" Tapped="Quiz1_Tapped"/>
+        <Button Content="Quiz 1:       Breda     [ 2010 POP MUSIC ]" HorizontalAlignment="Left" Height="128" Margin="300,70,0,0" VerticalAlignment="Top" Width="512" Tapped="Quiz1_Tapped"/>
         <Button Content="Quiz 2:       Not specified yet" HorizontalAlignment="Left" Height="128" Margin="400,248,0,0" VerticalAlignment="Top" Width="512" IsEnabled="False" />
     </Grid>
 </Page>

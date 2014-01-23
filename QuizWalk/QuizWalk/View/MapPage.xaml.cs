@@ -277,7 +277,7 @@ namespace QuizWalk
             mask |= MonitoredGeofenceStates.Entered;
             mask |= MonitoredGeofenceStates.Exited;
 
-            Geofence fence = new Geofence(name, new Geocircle(new BasicGeoposition { Altitude = 0.0, Latitude = l.Latitude, Longitude = l.Longitude }, 10),mask,true, new TimeSpan(2));
+            Geofence fence = new Geofence(name, new Geocircle(new BasicGeoposition { Altitude = 0.0, Latitude = l.Latitude, Longitude = l.Longitude }, 10),mask,false, new TimeSpan(0,0,1));
             
             return fence;
         }
