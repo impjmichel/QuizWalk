@@ -9,8 +9,11 @@
     IconSource="Assets/SmallLogo.png"
     Title="Question time!"
     Width="1366"
+    RequestedTheme="Dark"
     >
-
+    <SettingsFlyout.Background>
+        <ImageBrush ImageSource="ms-appx:/Assets/images/Question_BG.jpg" />
+    </SettingsFlyout.Background>
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
 
 

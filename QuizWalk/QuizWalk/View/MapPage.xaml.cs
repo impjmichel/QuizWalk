@@ -90,11 +90,11 @@ namespace QuizWalk
             }
         }
 
-        private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
+        private async void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
             System.Diagnostics.Debug.WriteLine("geolocator_PositionChanged called!");
             // Need to set map view on UI thread.
-            this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
+            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
                 () =>
                 {
                     //Get the current location
@@ -158,7 +158,7 @@ namespace QuizWalk
         /// Method to set the UserPin
         /// <param name="loc"></param>
         /// </summary>
-        public async void setUserPin(Location loc)
+        public void setUserPin(Location loc)
         {            
             userPin = new Pushpin();
             userPin.Text = "U";
@@ -376,19 +376,21 @@ namespace QuizWalk
         /// <param name="sender"></param>
         /// <param name="args"></param>
         /// </summary>
-        void Current_GeofenceStateChanged(GeofenceMonitor sender, object args)
+        async void Current_GeofenceStateChanged(GeofenceMonitor sender, object args)
         {
             var reports = sender.ReadReports();
             foreach (GeofenceStateChangeReport report in reports)
             {
                 GeofenceState state = report.NewState;
 
-                if (report.Geofence.Id.Equals("Einde"))
+                if (report.Geofence.Id.Equals("Einde") && count >= 15)
                 {
-                    MessageDialog mes = new MessageDialog("Einde");
-                    mes.ShowAsync();
+                    if (this.Frame != null)
+                    {
+                        this.Frame.Navigate(typeof(MainPage));
+                    }
                 }
-                else
+                else if(!report.Geofence.Id.Equals("Einde"))
                 {
                     int id = int.Parse(report.Geofence.Id);
                     System.Diagnostics.Debug.WriteLine(id);
@@ -403,7 +405,7 @@ namespace QuizWalk
                     {
                         if (id == count)
                         {
-                            this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
+                            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
                             () =>
                             {
                                 System.Diagnostics.Debug.WriteLine("geofence entered");

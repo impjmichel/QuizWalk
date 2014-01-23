@@ -166,6 +166,7 @@
     <Content Include="Assets\images\Letters\y.png" />
     <Content Include="Assets\images\Letters\z.png" />
     <Content Include="Assets\images\Login_BG.jpg" />
+    <Content Include="Assets\images\Question_BG.jpg" />
     <Content Include="Assets\images\QuizWalk_BG.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\QandA.xml" />
