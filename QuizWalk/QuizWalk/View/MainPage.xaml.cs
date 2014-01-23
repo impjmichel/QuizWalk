@@ -55,8 +55,9 @@ namespace QuizWalk
             {
                 using (var fs = await file.OpenAsync(Windows.Storage.FileAccessMode.Read))
                 {
+                    var inStream = fs.GetInputStreamAt(0);
                     DataContractSerializer serializer = new DataContractSerializer(typeof(UserData));
-                    data = (UserData)serializer.ReadObject(fs.AsStreamForRead());
+                    data = (UserData)serializer.ReadObject(inStream.AsStreamForRead());
                     fs.Dispose();
                 }
                 welcomeText.Text = "Choose your quiz, " + data.Name;
