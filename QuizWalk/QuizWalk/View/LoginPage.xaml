@@ -13,8 +13,11 @@
         </Grid.Background>
         <Canvas>
             <TextBox Canvas.Left="431" TextWrapping="Wrap" Canvas.Top="196" x:Name="NameTextBox" Width="418"/>
-            <TextBlock Canvas.Left="327" TextWrapping="Wrap" Text="Name" FontSize="30" Canvas.Top="196"/>
+            <TextBlock Canvas.Left="327" TextWrapping="Wrap" Text="Name : " FontSize="30" Canvas.Top="196"/>
             <Button x:Name="save" Content="Login" FontSize="25"  Canvas.Top="323" Canvas.Left="611" Height="62" Width="154" Tapped="Login_Tapped" />
+            <TextBlock Canvas.Left="470" TextWrapping="Wrap" Text="Hello," FontSize="40" Canvas.Top="114"/>
+            <TextBlock x:Name="nameTag" Canvas.Left="580" TextWrapping="Wrap" Text="{Binding Text, ElementName=NameTextBox}" FontSize="40" Canvas.Top="114"/>
+            <TextBlock x:Name="noNameError" Canvas.Left="560" TextWrapping="Wrap" FontSize="30" Foreground="Crimson" Canvas.Top="266"/>
         </Canvas>
     </Grid>
 </Page>

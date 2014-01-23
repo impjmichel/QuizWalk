@@ -64,6 +64,10 @@ namespace QuizWalk.View
                     this.Frame.Navigate(typeof(MainPage));
                 }
             }
+            else
+            {
+                noNameError.Text = "Please enter a name :)";
+            }
         }
 
         private async void SaveAsync()
