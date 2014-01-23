@@ -74,6 +74,7 @@ namespace QuizWalk
 
         private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
+            System.Diagnostics.Debug.WriteLine("geolocator_PositionChanged called!");
             // Need to set map view on UI thread.
             this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
                 () =>

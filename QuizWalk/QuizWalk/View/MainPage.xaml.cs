@@ -1,11 +1,14 @@
-﻿using QuizWalk.Control;
+﻿using QuizWalk.Model1;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,12 +26,11 @@ namespace QuizWalk
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        MainControl main;
+        private UserData data;
 
         public MainPage()
         {
             this.InitializeComponent();
-            main = new MainControl();
         }
 
         private void Quiz1_Tapped(object sender, TappedRoutedEventArgs e)
@@ -37,6 +39,33 @@ namespace QuizWalk
             {
                 this.Frame.Navigate(typeof(MapPage));
             }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            RestoreAsync();
+        }
+
+        private async void RestoreAsync()
+        {
+            StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("UserDetails");
+            if (file == null)
+                return;
+            try
+            {
+                using (var fs = await file.OpenAsync(Windows.Storage.FileAccessMode.Read))
+                {
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(UserData));
+                    data = (UserData)serializer.ReadObject(fs.AsStreamForRead());
+                    fs.Dispose();
+                }
+                welcomeText.Text = "Choose your quiz, " + data.Name;
+            }
+            catch(UnauthorizedAccessException)
+            {
+                System.Diagnostics.Debug.WriteLine("unauthorized! yet agaaaaaaain!");
+            }
+            
         }
     }
 }
