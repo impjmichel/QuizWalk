@@ -49,9 +49,17 @@ namespace QuizWalk.View
             List<QandAmodel> list = questions.ToList<QandAmodel>();
             model = list[0];
             QuestionBlock.Text = model.question;
+            if (model.answerA.Equals(""))
+                AnswerOne.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             AnswerOne.Content = model.answerA;
+            if (model.answerB.Equals(""))
+                AnswerTwo.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             AnswerTwo.Content = model.answerB;
+            if (model.answerC.Equals(""))
+                AnswerThree.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             AnswerThree.Content = model.answerC;
+            if (model.answerD.Equals(""))
+                AnswerFour.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             AnswerFour.Content = model.answerD;
         }
 
