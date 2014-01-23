@@ -43,6 +43,8 @@ namespace QuizWalk
         public QuestionFlyout QFlyaout;
         private int count = 1;
 
+        private DispatcherTimer positionUpdateTimer;
+
         public MapPage()
         {
             this.InitializeComponent();
@@ -59,6 +61,15 @@ namespace QuizWalk
             zoomToLocation();
             if (instance == null)
                 instance = this;
+            positionUpdateTimer = new DispatcherTimer();
+            positionUpdateTimer.Interval = TimeSpan.FromSeconds(1);
+            positionUpdateTimer.Tick += timer_PositionUpdated;
+            positionUpdateTimer.Start();
+        }
+
+        private async void timer_PositionUpdated(object sender, object e)
+        {
+            Geoposition pos = await geolocator.GetGeopositionAsync();
         }
 
         private void geolocator_PositionChanged(Geolocator sender, PositionChangedEventArgs args)
