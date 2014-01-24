@@ -23,8 +23,6 @@ using QuizWalk.View;
 using Windows.UI.Popups;
 
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace QuizWalk
 {
     /// <summary>
@@ -383,7 +381,7 @@ namespace QuizWalk
             {
                 GeofenceState state = report.NewState;
 
-                if (report.Geofence.Id.Equals("Einde") && count > 1)
+                if (report.Geofence.Id.Equals("Einde") && count > 15)
                 {
                     await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
                             () =>
@@ -508,6 +506,7 @@ namespace QuizWalk
                     i10th.Name = letter;
                     break;
                 case 11:
+                    // no image on this column
                     break;
                 case 12:
                     i11th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
