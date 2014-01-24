@@ -383,18 +383,19 @@ namespace QuizWalk
             {
                 GeofenceState state = report.NewState;
 
-                if (report.Geofence.Id.Equals("Einde") && count > 15)
+                if (report.Geofence.Id.Equals("Einde") && count > 1)
                 {
                     await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, new DispatchedHandler(
                             () =>
                             {
-                                var mes = new MessageDialog("You're at the end of the quiz", "The end!");
+                                String word = getColumnWord();
+                                if (word.Equals("zigzaggingbreda"))
+                                    word = "You won! Congratulations";
+                                else
+                                    word = "You lost, better luck next time.";
+                                var mes = new MessageDialog("You're at the end of the quiz", word);
                                 mes.Commands.Add(new UICommand("Ok",new UICommandInvokedHandler(this.CommandInvokedHandler)));
                                 mes.ShowAsync();
-                                //if (this.Frame != null)
-                                //{
-                                //    this.Frame.Navigate(typeof(MainPage));
-                                //}
                             }));
                     
                 }
@@ -433,6 +434,26 @@ namespace QuizWalk
                 this.Frame.Navigate(typeof(MainPage));
             }
         }
+
+        private String getColumnWord()
+        {
+            string word = i1st.Name;
+            word += i2nd.Name;
+            word += i3rd.Name;
+            word += i4th.Name;
+            word += i5th.Name;
+            word += i6th.Name;
+            word += i7th.Name;
+            word += i8th.Name;
+            word += i9th.Name;
+            word += i10th.Name;
+            word += i11th.Name;
+            word += i12th.Name;
+            word += i13th.Name;
+            word += i14th.Name;
+            word += i15th.Name;
+            return word;
+        }
         
         /// <summary>
         /// Method to set the image in the columns
@@ -448,50 +469,65 @@ namespace QuizWalk
             {
                 case 1:
                     i1st.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i1st.Name = letter;
                     break;
                 case 2:
                     i2nd.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i2nd.Name = letter;
                     break;
                 case 3:
                     i3rd.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i3rd.Name = letter;
                     break;
                 case 4:
                     i4th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i4th.Name = letter;
                     break;
                 case 5:
                     i5th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i5th.Name = letter;
                     break;
                 case 6:
                     i6th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i6th.Name = letter;
                     break;
                 case 7:
                     i7th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i7th.Name = letter;
                     break;
                 case 8:
                     i8th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i8th.Name = letter;
                     break;
                 case 9:
                     i9th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i9th.Name = letter;
                     break;
                 case 10:
                     i10th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i10th.Name = letter;
                     break;
                 case 11:
                     break;
                 case 12:
                     i11th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i11th.Name = letter;
                     break;
                 case 13:
                     i12th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i12th.Name = letter;
                     break;
                 case 14:
                     i13th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i13th.Name = letter;
                     break;
                 case 15:
                     i14th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i14th.Name = letter;
                     break;
                 case 16:
                     i15th.Source = new BitmapImage(new Uri(this.BaseUri, "ms-appx:/Assets/images/Letters/" + letter + ".png"));
+                    i15th.Name = letter;
                     break;
             }
         }
